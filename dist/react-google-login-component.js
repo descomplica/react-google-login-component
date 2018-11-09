@@ -165,12 +165,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function clickHandler() {
 	      var _this3 = this;
 
+	      if (this.props.clickHandler) {
+	        this.props.clickHandler();
+	      }
+
 	      var auth2 = gapi.auth2.getAuthInstance();
 	      var options = {
 	        prompt: this.props.prompt
 	      };
 	      auth2.signIn(options).then(function (googleUser) {
 	        return _this3.props.responseHandler(googleUser);
+	      }).catch(function (error) {
+	        return _this3.props.responseHandler(error);
 	      });
 	    }
 	  }, {
@@ -181,9 +187,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	          scope = _props2.scope,
 	          fetchBasicProfile = _props2.fetchBasicProfile,
 	          responseHandler = _props2.responseHandler,
+	          clickHandler = _props2.clickHandler,
 	          children = _props2.children,
 	          buttonText = _props2.buttonText,
-	          props = _objectWithoutProperties(_props2, ['socialId', 'scope', 'fetchBasicProfile', 'responseHandler', 'children', 'buttonText']);
+	          props = _objectWithoutProperties(_props2, ['socialId', 'scope', 'fetchBasicProfile', 'responseHandler', 'clickHandler', 'children', 'buttonText']);
 
 	      props.disabled = this.state.disabled || props.disabled;
 
