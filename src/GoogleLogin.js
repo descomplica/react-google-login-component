@@ -57,7 +57,9 @@ export default class GoogleLogin extends React.Component {
     const options = {
       prompt: this.props.prompt
     }
-    auth2.signIn(options).then(googleUser => this.props.responseHandler(googleUser));
+    auth2.signIn(options)
+      .then(googleUser => this.props.responseHandler(googleUser))
+      .catch(error => this.props.responseHandler(error));
   }
 
   render () {
